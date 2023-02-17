@@ -1,0 +1,53 @@
+import blackSails.*
+
+describe "Suma de coraje para Jhon" {
+
+	test "El coraje de John con su espada y su pistola habitual" {
+		assert.equals(jhon.getCorajeTotal(), 250);
+	}
+	
+	test "El coraje de John con su espada y su pistola especial" {
+		pistola.setMaterialPistola("adamantium");
+		pistola.setCalibrePistola(42);
+		jhon.setArmaSecundaria(pistola);
+		assert.equals(jhon.getCorajeTotal(), 550);
+	}
+	
+	test "El coraje de John con su espada y un banjo" {
+		banjo.setCorajeBase(jhon.getCorajeBase());
+		jhon.setArmaSecundaria(banjo);
+		assert.equals(jhon.getCorajeTotal(), 190);
+	}
+	
+	test "Cambiar el coraje base de John a 400 y calcular su coraje con espada y banjo" {
+		jhon.setCorajeBase(400);
+		banjo.setCorajeBase(jhon.getCorajeBase());
+		jhon.setArmaSecundaria(banjo);
+		assert.equals(jhon.getCorajeTotal(), 610);
+	}
+}
+
+describe "Danio para el Walrus" {
+
+	test "Conocer el daño de la embarcación" {
+		canion.setAnios(5);
+		canion.setLongitud(1.5);
+		canion.setPoderInicial(650);
+		assert.equals(walrus.danioProducido(), 926.25);
+	}
+	
+	test "Saber el poder pirata del Walrus, donde John usa su clásica espada y su pistola preferida" {
+		canion.setAnios(5);
+		canion.setLongitud(1.5);
+		canion.setPoderInicial(650);
+		assert.equals(walrus.poderPirata(), 1176.25);
+	}
+	
+	test "Cañón con daño de 1000 y Jhon clasico. Saber el poder pirata del Walrus" {
+		const nuevoCanion = object {
+			method danio() { return  1000;}
+		}
+		walrus.setCanion(nuevoCanion);
+		assert.equals(walrus.poderPirata(), 1250);
+	}
+}
